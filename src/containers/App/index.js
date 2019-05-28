@@ -1,14 +1,33 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { init } from 'actions';
 import List from 'components/List';
+import { selectList, selectLoading } from './selectors';
 
-const items = [
-    { id: 1, title: 'Title 1' },
-    { id: 2, title: 'Title 2' },
-    { id: 3, title: 'Title 3' }
-];
+const mapStateToProps = state => ({
+    list: selectList(state),
+    loading: selectLoading(state)
+});
 
-const App = () => (
-    <List items={ items } />
-);
+const mapDispatchToProps = dispatch => ({
+    onInit: () => dispatch(init())
+});
 
-export default App;
+export class App extends React.PureComponent {
+    componentDidMount() {
+        this.props.onInit();
+    };
+    
+    render() {
+        const { list, loading } = this.props;
+
+        return (
+            <List items={ list } loading={ loading } />
+        )
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(React.memo(App));
