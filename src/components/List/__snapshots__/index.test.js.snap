@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List Should render correct amount of item 1`] = `
+<div>
+  <Memo(ListItem)
+    key="1"
+    title="Title 1"
+  />
+  <Memo(ListItem)
+    key="2"
+    title="Title 2"
+  />
+  <Memo(ListItem)
+    key="3"
+    title="Title 3"
+  />
+</div>
+`;
+
+exports[`List Should render empty status insted of items if array is empty 1`] = `
+<div>
+  <Empty />
+</div>
+`;
+
+exports[`List Should render loading status insted of items 1`] = `
+<div>
+  <Loader />
+</div>
+`;
