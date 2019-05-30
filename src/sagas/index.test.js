@@ -18,7 +18,6 @@ const entities = {
         title: 'title'
     }
 };
-const entity = 'item';
 
 describe('Sagas', () => {
     describe('Root', () => {
@@ -53,7 +52,7 @@ describe('Sagas', () => {
         });
 
         it('should update entities', () => {
-            expect(saga.next({ list, entities, entity}).value).toEqual(put(updateEntities({ entity,  entities })))
+            expect(saga.next({ result: list, entities }).value).toEqual(put(updateEntities(entities)))
         });
 
         it('should recieve items', () => {

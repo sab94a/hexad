@@ -1,6 +1,6 @@
 import { GET_LIST_REQUEST, GET_LIST_RECIEVE } from 'constants/actions';
 
-const defaultState = {
+export const defaultState = {
     items: [],
     loading: false
 };

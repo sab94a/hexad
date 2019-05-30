@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Loader Should render correctly 1`] = `
-<WithStyles(ForwardRef(CircularProgress))
-  className="makeStyles-progress-1"
-/>
+<div>
+  There are no any items..
+</div>
 `;

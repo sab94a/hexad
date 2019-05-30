@@ -1,18 +1,31 @@
+import { combineReducers } from 'redux';
 import { UPDATE_ENTITIES } from 'constants/actions'
+import itemReducer from './item';
 
-const entitiesReducer = (state = {}, { type, payload }) => {
+const commonReducer = combineReducers({
+    item: itemReducer
+})
+
+const entitiesReducer = (state = {}, action) => {
+    const { type, payload } = action;
+
     switch(type) {
         case UPDATE_ENTITIES:
-            const { entity, entities } = payload;
-            return {
-                ...state,
-                [entity]: {
-                    ...state[entity],
-                    ...entities
+            let newState = { ...state };
+
+            for(let entity in payload) {
+                newState = {
+                    ...newState,
+                    [entity]: {
+                        ...state[entity],
+                        ...payload[entity]
+                    }
                 }
-            };
+            }
+
+            return newState;
         default:
-            return state;
+            return commonReducer(state, action);
     }
 }
 

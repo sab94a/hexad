@@ -15,6 +15,7 @@ export const selectList = createSelector(
     selectListEntities,
     (ids, entities) =>
         denormalize(ids, [Item], entities)
+            .sort((a, b) => b.rate - a.rate)
 );
 
 

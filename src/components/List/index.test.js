@@ -7,9 +7,9 @@ import Empty from 'components/Empty';
 import List from './';
 
 const ITEMS = [
-    { id: 1, title: 'Title 1' },
-    { id: 2, title: 'Title 2' },
-    { id: 3, title: 'Title 3' }
+    { id: 1, title: 'Title 1', image: 'src', rate: 1, description: 'test' },
+    { id: 2, title: 'Title 2', image: 'src', rate: 1, description: 'test' },
+    { id: 3, title: 'Title 3', image: 'src', rate: 1, description: 'test' }
 ];
 
 describe('List', () => {

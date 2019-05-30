@@ -1,14 +1,15 @@
 // @flow
 
 import { normalize } from 'normalizr';
-import { ItemEntity, Item } from 'entity';
+import { Item } from 'entity';
+
+const getResponse = res => res.json()
+const getNormalizedList = ({ data }) => normalize(data, [Item])
 
 export default class Api {
     static fetchList() {
         return fetch('/list.json')
-            .then(res => res.json())
-            .then(({ data }) => normalize(data, [Item]))
-            .then(({ result, entities }) => 
-                ({ list: result, entities: entities[ItemEntity], entity: ItemEntity }));
+            .then(getResponse)
+            .then(getNormalizedList)
     }
 }

@@ -2,5 +2,8 @@
 
 export type Item = {
     id: number,
-    title: string
+    title: string,
+    rate: number,
+    image: string,
+    description: string
 }
