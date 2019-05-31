@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 import StarIcon from '@material-ui/icons/Star';
-import Rating from 'material-ui-rating'
+import Rating from 'react-rating';
 import CardMedia from '@material-ui/core/CardMedia';
 import ListItem from './'
 
@@ -38,17 +38,16 @@ describe('ListItem', () => {
     })
 
     it('Should render correct rate', () => {
-        const rate = component.find(Rating).prop('value');
-        const newRate = 3
+        const rate = component.find(Rating).prop('initialRating');
 
         expect(rate).toEqual(item.rate);
     })
 
     it('Should call callback on star click', () => {
         const newRate = 3;
-        const star = component.find(Rating).find('button').at(newRate - 1);
-
-        star.simulate('click');
+        const starHandler = component.find(Rating).prop('onChange')//.at(newRate - 1);
+        
+        starHandler(newRate)
 
         const call = item.onRateChange.mock.calls;
 

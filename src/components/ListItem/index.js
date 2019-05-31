@@ -1,7 +1,8 @@
 // @flow
 
 import React from 'react';
-import Rating from 'material-ui-rating'
+import Rating from 'react-rating';
+import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarIcon from '@material-ui/icons/Star';
@@ -22,6 +23,10 @@ const useStyles = makeStyles({
     },
     content: {
         textAlign: 'left'
+    },
+    button: {
+        padding: 2,
+        color: '#FFC107'
     }
 });
 
@@ -30,7 +35,10 @@ export const MAX_RATE = 10;
 type Props = Item & { onRateChange: (id: number, value: number) => void }
 
 const ListItem = ({ title, id, image, description, rate, onRateChange }: Props) => {
-    const { root, media, content } = useStyles();
+    const { root, media, content, button } = useStyles();
+
+    const emptyStar = <IconButton className={ button }><StarBorderIcon /></IconButton>
+    const fullStart = <IconButton className={ button }><StarIcon /></IconButton>
 
     return (
         <Card className={ root }>
@@ -50,11 +58,10 @@ const ListItem = ({ title, id, image, description, rate, onRateChange }: Props) 
             </CardContent>
             <CardActions>
                 <Rating
-                    value={ rate }
-                    max={ MAX_RATE }
-                    iconNormal={ <StarBorderIcon /> }
-                    iconFilled={ <StarIcon /> }
-                    iconHovered={ <StarIcon /> }
+                    initialRating={ rate }
+                    stop={ MAX_RATE }
+                    emptySymbol={ emptyStar }
+                    fullSymbol={ fullStart }
                     onChange={ value => onRateChange(id, value) }
                 />
             </CardActions>
